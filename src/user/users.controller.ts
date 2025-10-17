@@ -11,9 +11,4 @@ export class UsersController {
     // delegate to the service which expects a RegisterDto-like object
     return this.usersService.createUser(registerUserDto);
   }
-
-  //   @Get()
-  //   async findAll() {
-  //     return this.usersService.findAll();
-  //   }
 }

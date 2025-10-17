@@ -3,3 +3,5 @@ export enum UserRole {
   USER = 'user',
   MANAGER = 'manager',
 }
+
+////move it to auth module

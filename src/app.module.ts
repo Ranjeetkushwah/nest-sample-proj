@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CustomModule } from './custom/custom.module';
+import { CourseModule } from './course/course.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { CustomModule } from './custom/custom.module';
     AuthModule,
     UserModule,
     CustomModule,
+    CourseModule,
   ],
   controllers: [AppController],
   providers: [AppService],

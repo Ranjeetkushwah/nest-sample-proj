@@ -18,7 +18,8 @@ export class UserService {
     } catch (error: unknown) {
       console.error('Error creating user:', error);
       const err = error as { code?: number };
-      if (err.code == 11000) {
+      const DUPLICATE_KEY_CODE = 11000;
+      if (err.code == DUPLICATE_KEY_CODE) {
         throw new ConflictException('Email already exists');
       }
       throw error;
@@ -28,7 +29,7 @@ export class UserService {
     // return user.save();
   }
 
-  //   async findAll(): Promise<User[]> {
-  //     return this.userModel.find().exec();
-  //   }
+  async getUserById(id: string) {
+    return this.userModel.findById({ _id: id });
+  }
 }

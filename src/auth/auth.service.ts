@@ -2,10 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import { RegisterDto } from './dto/register.dto';
 import bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService,
+  ) { }
 
   async registerUser(registerUserDto: RegisterDto) {
     console.log('registerDto', registerUserDto);
@@ -18,7 +22,8 @@ export class AuthService {
       password: hash,
     });
 
-    console.log('Created User:', user);
-    return user;
+    const token = await this.jwtService.signAsync({ sub: user._id, role: "admin" });
+    console.log('Created token:', token);
+    return { access_token: token };
   }
 }
